@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.ITeachingDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.TeachingVO" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="u_id" property="uId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, t_id, u_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_course
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from teacher_course
+    where t_id = #{tId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByWhere" resultMap="BaseResultMap" parameterType="com.te.vo.TeachingVO">
+  select
+  <include refid="Base_Column_List" />
+  from teacher_course
+  where 1=1
+  <if test="id != null" >
+      and Id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="tId != null" >
+      and t_id = #{tId,jdbcType=VARCHAR}
+    </if>
+    <if test="uId != null" >
+      and u_id = #{uId,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher_course
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.TeachingVO" >
+    insert into teacher_course (Id, t_id, u_id)
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.TeachingVO" >
+    insert into teacher_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.TeachingVO" >
+    update teacher_course
+    <set >
+      <if test="tId != null" >
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.TeachingVO" >
+    update teacher_course
+    set t_id = #{tId,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

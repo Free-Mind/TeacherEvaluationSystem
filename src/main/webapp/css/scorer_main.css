@@ -1,0 +1,34 @@
+body{
+    margin: 0;
+    padding: 0;
+    font: 14px/15pt;
+	background-color:#F0F8FF;
+}
+#main{
+	width:75%;
+	margin-left:auto;
+	margin-right:auto;
+}
+table{
+	text-align:center;
+	margin-top:30px;
+}
+table#userinfo_table tr{
+	height:40px;
+}
+table#userinfo_table td{
+	width:150px;
+}
+td{
+	width:150px;
+}
+#download{
+	float:right;
+	margin-right:20%;
+}
+h3{
+	margin-left:20%;
+}
+#msg_div{
+	margin-left:20%;
+}

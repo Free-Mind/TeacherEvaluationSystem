@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.ICourseDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.CourseVO" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="BIT" />
+    <result column="course_hour" property="courseHour" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, course_name, level, course_type, course_hour, start_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from course
+    where 1=1 
+  </select>
+  <select id="selectByWhere" resultMap="BaseResultMap" parameterType="com.te.vo.CourseVO" >
+  	select
+  	<include refid="Base_Column_List" />
+  	from course
+  	where 1=1 
+  	<if test="id != null and id != '' " >
+    	and Id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="courseName != null and courseName != '' " >
+       and course_name like #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="level != null and level != '' "  >
+        and level = #{level,jdbcType=VARCHAR}
+      </if>
+      <if test="courseType != null and courseType != '' " >
+        and course_type = #{courseType,jdbcType=BIT}
+      </if>
+      <if test="courseHour != null and courseHour != '' " >
+        and course_hour = #{courseHour,jdbcType=INTEGER}
+      </if>
+      <if test="startTime != null and startTime != '' " >
+        and start_time = #{startTime,jdbcType=DATE}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.CourseVO" >
+    insert into course (Id, course_name, level, 
+      course_type, course_hour, start_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{courseType,jdbcType=BIT}, #{courseHour,jdbcType=INTEGER}, #{startTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.CourseVO" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="courseHour != null" >
+        course_hour,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=BIT},
+      </if>
+      <if test="courseHour != null" >
+        #{courseHour,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.CourseVO" >
+    update course
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=BIT},
+      </if>
+      <if test="courseHour != null" >
+        course_hour = #{courseHour,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.CourseVO" >
+    update course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=BIT},
+      course_hour = #{courseHour,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=DATE}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,56 @@
+#login_area{
+	width:1050px;
+	height:768px;
+	padding-top:100px;
+	margin-left:auto;
+	margin-right:auto;
+	background:url(img/1.jpg) no-repeat 4px 5px
+}
+#username{
+	width:120px;
+}
+#password{
+	width:120px;
+}
+#un{
+	font-size:18px;
+}
+#up{
+	font-size:18px;
+}
+#login_username{
+	margin-left:40%;
+}
+#user-type{
+	margin-left:40%;
+	overflow:hidden;
+}
+
+#login_password{
+	margin-top:8px;
+	margin-left:40%;
+}
+#admin-login-type{
+	margin-top:8px;
+	margin-left:40%;
+}
+#login_button{
+	margin-top:8px;
+	padding-left:40px;
+	margin-left:40%;
+}
+#u_msg{
+	width:10px;
+	color:red;
+	padding-right:5px;
+	font-size:18px;
+}
+#user_type{
+	margin-left:40%;
+}
+#scorer-login-type{
+	display:none;
+}
+#admin-wrap{
+	margin-left:40%;
+}

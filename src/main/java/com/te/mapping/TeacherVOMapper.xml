@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.ITeacherDAO">
+	<resultMap id="BaseResultMap" type="com.te.vo.TeacherVO">
+		<id column="Id" property="id" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="organization" property="organization" jdbcType="VARCHAR" />
+		<result column="tech_title" property="techTitle" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="BIT" />
+		<result column="birthday" property="birthday" jdbcType="DATE" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, password, name, organization, tech_title, sex, birthday, type
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from teacher
+		where Id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByWhere" resultMap="BaseResultMap"
+		parameterType="com.te.vo.TeacherVO">
+		select
+		<include refid="Base_Column_List" />
+		from teacher
+		where 1=1
+		<if test="id != null">
+			and Id = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="password != null">
+			and password = #{password,jdbcType=VARCHAR}
+		</if>
+		<if test="name != null">
+			and name = #{name,jdbcType=VARCHAR} 
+		</if>
+		<if test="organization != null">
+			and organization = #{organization,jdbcType=VARCHAR} 
+		</if>
+		<if test="techTitle != null">
+			and tech_title = #{techTitle,jdbcType=VARCHAR} 
+		</if>
+		<if test="sex != null">
+			and sex = #{sex,jdbcType=BIT}
+		</if>
+		<if test="birthday != null">
+			and birthday = #{birthday,jdbcType=DATE}
+		</if>
+		<if test="type != null">
+			and type = #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from teacher
+		where Id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.te.vo.TeacherVO">
+		insert into teacher (Id, password, name,
+		organization, tech_title, sex,
+		birthday, type)
+		values (#{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{organization,jdbcType=VARCHAR}, #{techTitle,jdbcType=VARCHAR}, #{sex,jdbcType=BIT},
+		#{birthday,jdbcType=DATE}, #{type,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.te.vo.TeacherVO">
+		insert into teacher
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="techTitle != null">
+				tech_title,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="techTitle != null">
+				#{techTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=BIT},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.te.vo.TeacherVO">
+		update teacher
+		<set>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="techTitle != null">
+				tech_title = #{techTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=BIT},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.te.vo.TeacherVO">
+		update teacher
+		set password = #{password,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		organization = #{organization,jdbcType=VARCHAR},
+		tech_title = #{techTitle,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=BIT},
+		birthday = #{birthday,jdbcType=DATE},
+		type = #{type,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

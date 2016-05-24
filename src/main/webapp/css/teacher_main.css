@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 0;
+    font: 14px/15pt;
+	background-color:#F0F8FF;
+}
+
+
+#main{
+	width:75%;
+	margin-left:auto;
+	margin-right:auto;
+}
+table{
+	text-align:center;
+	margin-top:30px;
+}
+table#userinfo_table tr{
+	height:40px;
+}
+table#userinfo_table td{
+	width:150px;
+}
+
+table#course_selected_table tr{
+	height:30px;
+}
+table#course_selected_table td{
+	width:100px;
+}
+#course_selecting{
+	width:720px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+}
+#addhad_area{
+	padding-top:10px;
+	margin-left:25%;
+}
+#addnew_area{
+	padding-top:10px;
+	margin-left:25%;
+	
+}
+td{
+	width:100px;
+}

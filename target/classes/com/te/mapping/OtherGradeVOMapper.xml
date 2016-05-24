@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.IOtherGradeDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.OtherGradeVO" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="other_grade" property="otherGrade" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, other_grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher_other_grade
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from teacher_other_grade
+  	where 1=1
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teacher_other_grade
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.OtherGradeVO" >
+    insert into teacher_other_grade (Id, other_grade)
+    values (#{id,jdbcType=VARCHAR}, #{otherGrade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.OtherGradeVO" >
+    insert into teacher_other_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="otherGrade != null" >
+        other_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="otherGrade != null" >
+        #{otherGrade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.OtherGradeVO" >
+    update teacher_other_grade
+    <set >
+      <if test="otherGrade != null" >
+        other_grade = #{otherGrade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.OtherGradeVO" >
+    update teacher_other_grade
+    set other_grade = #{otherGrade,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

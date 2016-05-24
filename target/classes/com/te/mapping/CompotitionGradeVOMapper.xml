@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.ICompotitionGradeDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.CompotitionGradeVO">
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from competition_grade
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+  	select
+ 		<include refid="Base_Column_List" />
+ 		from competition_grade
+ 		where 1=1
+  </select> 
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from competition_grade
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.CompotitionGradeVO" >
+    insert into competition_grade (Id, grade)
+    values (#{id,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.CompotitionGradeVO" >
+    insert into competition_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.CompotitionGradeVO" >
+    update competition_grade
+    <set >
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.CompotitionGradeVO" >
+    update competition_grade
+    set grade = #{grade,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

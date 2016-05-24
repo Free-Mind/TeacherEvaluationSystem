@@ -1,0 +1,105 @@
+<div id="course_selected" align="center">
+	<h4>已选课程</h4>
+	<table id="course_selected_table" border="1">
+		<!--  
+		<tr>
+			<td>课程ID</td>
+			<td>课程名称</td>
+			<td>培训层次</td>
+			<td>课程类型</td>
+			<td>课时</td>
+			<td>授课时间</td>
+		</tr>-->
+	</table>
+</div>
+<hr />
+<div id="course_selecting">
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#addhad" data-toggle="tab">
+				添加已有课程</a></li>
+		<li><a href="#addnew" data-toggle="tab">新增课程</a></li>
+	
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="addhad">
+			<div id="addhad_area">
+				<span style="padding-right:5px;">请输入课程ID:</span> <input type="text"
+					maxlength="16" name="courseid" id="courseid" />
+				<button id="addhad_action" class="btn btn-default">添加</button>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="addnew">
+			<div id="addnew_area">
+				<div id="course_line1">
+					<span>课程名称：</span> <input type="text" maxlength="16"
+						name="coursename" id="coursename" />
+				</div>
+				<br />
+				<div id="course_line2">
+					<span>培训层次：</span> <select id="level">
+						<option value="0">本科</option>
+						<option value="1">轮训</option>
+						<option value="2">外训</option>
+						<option value="3">研究生</option>
+						<option value="4">博士生</option>
+					</select>
+				</div>
+				<br />
+				<div id="course_line3">
+					<span>课程类型：</span> <select id="course_type">
+						<option value="0">必修</option>
+						<option value="1">选修</option>
+					</select>
+				</div>
+				<br />
+				<div id="course_line4">
+					<span>课时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> <input type="number" maxlength="16" name="ctime"
+						id="ctime" />
+				</div>
+				<br />
+				<div id="course_line5">
+					<span>开课时间：</span> <input type="date" maxlength="16" name="cstart"
+						id="cstart" />
+				</div>
+				<br />
+				<div id="course_addnew_button_area">
+					<button id="addnew_action" class="btn btn-default"
+						style="margin-left: 17%;">添加</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		$(function() {
+			$('#myTab li:eq(0) a').tab('show');
+		});
+	</script>
+</div>
+<hr />
+<div id="course_searching">
+	<h4>搜索已有课程</h4>
+	<div id="search_area">
+		<span>课程名称：</span> <input type="text" maxlength="16"
+			name="coursename_search" id="coursename_search" style="width:120px;" /> <span>培训层次：</span>
+		<select id="level_search">
+			<option value="-1">全部</option>
+			<option value="0">本科</option>
+			<option value="1">轮训</option>
+			<option value="2">外训</option>
+			<option value="3">研究生</option>
+			<option value="4">博士生</option>
+		</select> <span>课程类型：</span> <select id="course_type_search">
+			<option value="-1">全部</option>
+			<option value="0">必修</option>
+			<option value="1">选修</option>
+		</select> <span>课时： </span> <input type="number" maxlength="16"
+			name="ctime_search" id="ctime_search" style="width:120px;" /> <span>开课时间：</span> <input
+			type="date" maxlength="16" name="cstart" id="cstart" />
+		<button id="search" class="btn btn-default">搜索</button>
+	</div><hr />
+	<div id="search_result_area">
+		
+	</div>
+
+</div>

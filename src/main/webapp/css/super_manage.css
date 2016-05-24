@@ -1,0 +1,23 @@
+#submit-wrap{
+	padding-top:40px;
+	width:200px;
+	margin:0 auto;
+}
+table{
+	margin-left:30%;
+}
+td{
+	width:100px;
+}
+#grade{
+	width:200px;
+}
+#right,#false{
+	display:none;
+}
+#right{
+	color:green;
+}
+#false{
+	color:red;
+}

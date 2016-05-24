@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.IScoreWeightDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.ScoreWeightVO" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="p1_i" property="p1I" jdbcType="DOUBLE" />
+    <result column="p2_i" property="p2I" jdbcType="DOUBLE" />
+    <result column="p3_i" property="p3I" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, p1_i, p2_i, p3_i
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from score_weight
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from score_weight
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.ScoreWeightVO" >
+    insert into score_weight (Id, p1_i, p2_i, p3_i
+      )
+    values (#{id,jdbcType=INTEGER}, #{p1I,jdbcType=DOUBLE}, #{p2I,jdbcType=DOUBLE}, #{p3I,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.ScoreWeightVO" >
+    insert into score_weight
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="p1I != null" >
+        p1_i,
+      </if>
+      <if test="p2I != null" >
+        p2_i,
+      </if>
+      <if test="p3I != null" >
+        p3_i,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="p1I != null" >
+        #{p1I,jdbcType=DOUBLE},
+      </if>
+      <if test="p2I != null" >
+        #{p2I,jdbcType=DOUBLE},
+      </if>
+      <if test="p3I != null" >
+        #{p3I,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.ScoreWeightVO" >
+    update score_weight
+    <set >
+      <if test="p1I != null" >
+        p1_i = #{p1I,jdbcType=DOUBLE},
+      </if>
+      <if test="p2I != null" >
+        p2_i = #{p2I,jdbcType=DOUBLE},
+      </if>
+      <if test="p3I != null" >
+        p3_i = #{p3I,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.ScoreWeightVO" >
+    update score_weight
+    set p1_i = #{p1I,jdbcType=DOUBLE},
+      p2_i = #{p2I,jdbcType=DOUBLE},
+      p3_i = #{p3I,jdbcType=DOUBLE}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.te.itf.dao.IScoreDAO" >
+  <resultMap id="BaseResultMap" type="com.te.vo.ScoreVO" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="tc_id" property="tcId" jdbcType="INTEGER" />
+    <result column="p1" property="p1" jdbcType="INTEGER" />
+    <result column="p2" property="p2" jdbcType="INTEGER" />
+    <result column="p3" property="p3" jdbcType="INTEGER" />
+    <result column="pl" property="pl" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ExtendResultMap1" type="com.te.vo.AvgScoreVO">
+  	<result column="tc_id" property="tc_id" jdbcType="INTEGER" />
+    <result column="p1" property="p1" jdbcType="DOUBLE" />
+    <result column="p2" property="p2" jdbcType="DOUBLE" />
+    <result column="p3" property="p3" jdbcType="DOUBLE" />
+    <result column="pl" property="pl" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, t_id, tc_id, p1, p2, p3, pl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from score
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAvgBytcid" resultMap="ExtendResultMap1">
+  	select tc_id,avg(p1) as p1,avg(p2) as p2,avg(p3) as p3,avg(pl) as pl from score group by tc_id;
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from score
+    where 1 = 1
+  </select>
+  <select id="selectByWhere" resultMap="BaseResultMap" parameterType="com.te.vo.ScoreVO" >
+  	select
+  	<include refid="Base_Column_List" />
+    from score
+    where 1=1
+    <if test="id != null" >
+        and Id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="tId != null" >
+      	and t_id = #{tId,jdbcType=VARCHAR}
+    </if>
+    <if test="tcId != null" >
+     	and tc_id = #{tcId,jdbcType=INTEGER}
+    </if>
+    <if test="p1 != null" >
+      	and p1 = #{p1,jdbcType=INTEGER}
+    </if>
+    <if test="p2 != null" >
+      	and p2 = #{p2,jdbcType=INTEGER}
+    </if>
+    <if test="p3 != null" >
+      	and p3 = #{p3,jdbcType=INTEGER}
+    </if>
+    <if test="pl != null" >
+      	and pl = #{pl,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from score
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.te.vo.ScoreVO" >
+    insert into score (Id, t_id, tc_id, 
+      p1, p2, p3, pl
+      )
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=VARCHAR}, #{tcId,jdbcType=INTEGER}, 
+      #{p1,jdbcType=INTEGER}, #{p2,jdbcType=INTEGER}, #{p3,jdbcType=INTEGER}, #{pl,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.te.vo.ScoreVO" >
+    insert into score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="tcId != null" >
+        tc_id,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="pl != null" >
+        pl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tcId != null" >
+        #{tcId,jdbcType=INTEGER},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=INTEGER},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=INTEGER},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=INTEGER},
+      </if>
+      <if test="pl != null" >
+        #{pl,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.te.vo.ScoreVO" >
+    update score
+    <set >
+      <if test="tId != null" >
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tcId != null" >
+        tc_id = #{tcId,jdbcType=INTEGER},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=INTEGER},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=INTEGER},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=INTEGER},
+      </if>
+      <if test="pl != null" >
+        pl = #{pl,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.te.vo.ScoreVO" >
+    update score
+    set t_id = #{tId,jdbcType=VARCHAR},
+      tc_id = #{tcId,jdbcType=INTEGER},
+      p1 = #{p1,jdbcType=INTEGER},
+      p2 = #{p2,jdbcType=INTEGER},
+      p3 = #{p3,jdbcType=INTEGER},
+      pl = #{pl,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
